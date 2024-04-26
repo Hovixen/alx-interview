@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+A pascal's triangle
+"""
+
 def pascal_triangle(n):
     """
     Generate Pascal's triangle up to the nth row using list comprehensions.
