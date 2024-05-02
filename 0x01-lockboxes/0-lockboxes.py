@@ -4,6 +4,7 @@ from collections import deque
 Lockbox concept that determines if all boxes can be opened
 """
 
+
 def canUnlockAll(boxes):
     """
     Algorithm function that accepts the box list
