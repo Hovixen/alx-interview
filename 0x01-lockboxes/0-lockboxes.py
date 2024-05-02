@@ -5,7 +5,6 @@ Lockbox concept that determines if all boxes can be opened
 from collections import deque
 
 
-
 def canUnlockAll(boxes):
     """
     Algorithm function that accepts the box list
