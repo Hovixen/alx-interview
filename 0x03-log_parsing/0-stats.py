@@ -18,7 +18,6 @@ def print_stats(total_fs, s_code_count):
     print("File size: {}".format(total_fs))
     for code, count in sorted(s_code_count.items()):
         print("{}: {}".format(code, count))
-    sys.stdout.flush()
 
 
 def stats():
