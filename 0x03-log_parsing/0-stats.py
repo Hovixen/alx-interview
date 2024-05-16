@@ -39,8 +39,6 @@ def stats():
             if line_count == 10:
                 print_stats(total_fs, s_code_count)
                 line_count = 0
-                total_fs = 0
-                s_code_count = {}
     except KeyboardInterrupt:
         print_stats(total_fs, s_code_count)
         raise
