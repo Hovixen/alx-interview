@@ -44,5 +44,6 @@ def stats():
         print_stats(total_fs, s_code_count)
         raise
 
+
 if __name__ == '__main__':
     stats()
