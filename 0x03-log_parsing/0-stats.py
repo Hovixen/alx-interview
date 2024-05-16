@@ -1,41 +1,50 @@
 #!/usr/bin/python3
-"""Input stats"""
+""" Log parsing """
 import sys
 
-stats = {
-    '200': 0,
-    '301': 0,
-    '400': 0,
-    '401': 0,
-    '403': 0,
-    '404': 0,
-    '405': 0,
-    '500': 0
-}
-sizes = [0]
+
+def line_in(line):
+    """ function process each line
+    returns status code and the file size
+    """
+    parts = line.split()
+    s_code = int(parts[-2])
+    f_size = int(parts[-1])
+    return s_code, f_size
 
 
-def print_stats():
-    print('File size: {}'.format(sum(sizes)))
-    for s_code, count in sorted(stats.items()):
-        if count:
-            print('{}: {}'.format(s_code, count))
+def print_stats(total_fs, s_code_count):
+    """ Prints the statistics """
+    print("File size: {}".format(total_fs))
+    for code, count in sorted(s_code_count.items()):
+        print("{}: {}".format(code, count))
+    sys.stdout.flush()
 
 
-try:
-    for i, line in enumerate(sys.stdin, start=1):
-        matches = line.rstrip().split()
-        try:
-            status_code = matches[-2]
-            file_size = matches[-1]
-            if status_code in stats.keys():
-                stats[status_code] += 1
-            sizes.append(int(file_size))
-        except Exception:
-            pass
-        if i % 10 == 0:
-            print_stats()
-    print_stats()
-except KeyboardInterrupt:
-    print_stats()
-    raise
+def stats():
+    """ Prints stats from stdin """
+    total_fs = 0
+    s_code_count = {}
+
+    try:
+        line_count = 0
+        for line in sys.stdin:
+            s_code, f_size = line_in(line.rstrip())
+            if s_code is not None and f_size is not None:
+                total_fs += f_size
+                s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
+
+            line_count += 1
+
+            if line_count == 10:
+                print_stats(total_fs, s_code_count)
+                line_count = 0
+                total_fs = 0
+                s_code_count = {}
+    except KeyboardInterrupt:
+        print_stats(total_fs, s_code_count)
+        raise
+
+
+if __name__ == '__main__':
+    stats()
