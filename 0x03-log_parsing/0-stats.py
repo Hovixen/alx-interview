@@ -18,7 +18,6 @@ def print_stats(total_fs, s_code_count):
     print("File size: {}".format(total_fs))
     for code, count in sorted(s_code_count.items()):
         print("{}: {}".format(code, count))
-    sys.stdout.flush()
 
 
 def stats():
@@ -39,8 +38,6 @@ def stats():
             if line_count == 10:
                 print_stats(total_fs, s_code_count)
                 line_count = 0
-                total_fs = 0
-                s_code_count = {}
     except KeyboardInterrupt:
         print_stats(total_fs, s_code_count)
         raise
