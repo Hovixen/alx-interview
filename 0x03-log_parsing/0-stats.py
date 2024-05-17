@@ -20,7 +20,7 @@ def print_stats(total_fs, s_code_count):
         print("{}: {}".format(code, count))
 
 
-def stats():
+try:
     """ Prints stats from stdin """
     total_fs = 0
     s_code_count = {}
@@ -28,7 +28,7 @@ def stats():
     try:
         line_count = 0
         for line in sys.stdin:
-            s_code, f_size = line_in(line.strip())
+            s_code, f_size = line_in(line.rstrip())
             if s_code is not None and f_size is not None:
                 total_fs += f_size
                 s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
@@ -38,10 +38,8 @@ def stats():
             if line_count == 10:
                 print_stats(total_fs, s_code_count)
                 line_count = 0
-    except KeyboardInterrupt:
-        print_stats(total_fs, s_code_count)
-        raise
-
-
-if __name__ == '__main__':
-    stats()
+    except Exception:
+        pass
+except KeyboardInterrupt:
+    print_stats(total_fs, s_code_count)
+    raise
