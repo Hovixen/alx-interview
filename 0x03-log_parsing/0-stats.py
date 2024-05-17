@@ -26,18 +26,18 @@ try:
     s_code_count = {}
 
 #    try:
-        line_count = 0
-        for line in sys.stdin:
-            s_code, f_size = line_in(line.rstrip())
-            if s_code is not None and f_size is not None:
-                total_fs += f_size
-                s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
+    line_count = 0
+    for line in sys.stdin:
+        s_code, f_size = line_in(line.rstrip())
+        if s_code is not None and f_size is not None:
+            total_fs += f_size
+            s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
 
-            line_count += 1
+        line_count += 1
 
-            if line_count == 10:
-                print_stats(total_fs, s_code_count)
-                line_count = 0
+        if line_count == 10:
+            print_stats(total_fs, s_code_count)
+            line_count = 0
 #    except Exception:
 #        pass
 finally:
