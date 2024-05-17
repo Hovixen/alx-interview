@@ -42,4 +42,3 @@ try:
         pass
 finally:
     print_stats(total_fs, s_code_count)
-    raise
