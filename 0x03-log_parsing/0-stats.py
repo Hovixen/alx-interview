@@ -38,7 +38,7 @@ try:
         if line_count == 10:
             print_stats(total_fs, s_code_count)
             line_count = 0
-except Exception:
+except Exception as err:
     pass
 finally:
     print_stats(total_fs, s_code_count)
