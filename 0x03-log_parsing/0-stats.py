@@ -15,8 +15,6 @@ def line_in(line):
     try:
         s_code = int(parts[-2])
         f_size = int(parts[-1])
-        if s_code not in allowed_scode:
-            return None, None
         return s_code, f_size
     except (ValueError, IndexError):
         return None, None
@@ -39,7 +37,8 @@ try:
         s_code, f_size = line_in(line.rstrip())
         if s_code is not None and f_size is not None:
             total_fs += f_size
-            s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
+            if s_code in allowed_scode:
+                s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
 
         line_count += 1
 
