@@ -40,5 +40,5 @@ try:
                 line_count = 0
     except Exception as err:
         pass
-finally:
+except KeyboardInterrupt:
     print_stats(total_fs, s_code_count)
