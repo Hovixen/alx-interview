@@ -38,7 +38,8 @@ try:
             if line_count == 10:
                 print_stats(total_fs, s_code_count)
                 line_count = 0
-    except Exception as err:
+    except Exception:
         pass
-except KeyboardInterrupt:
+finally:
     print_stats(total_fs, s_code_count)
+    raise
