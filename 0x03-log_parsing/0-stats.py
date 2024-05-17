@@ -12,11 +12,14 @@ def line_in(line):
     parts = line.split()
     if len(parts) < 7:
         return None, None
-    s_code = int(parts[-2])
-    f_size = int(parts[-1])
-    if s_code not in allowed_scode:
+    try:
+        s_code = int(parts[-2])
+        f_size = int(parts[-1])
+        if s_code not in allowed_scode:
+            return None, None
+        return s_code, f_size
+    except (ValueError, IndexError):
         return None, None
-    return s_code, f_size
 
 
 def print_stats(total_fs, s_code_count):
@@ -43,6 +46,8 @@ try:
         if line_count == 10:
             print_stats(total_fs, s_code_count)
             line_count = 0
-except Exception as err:
-    pass
+except KeyboardInterrupt:
+    print_stats(total_fs, s_code_count)
+    raise
+
 print_stats(total_fs, s_code_count)
