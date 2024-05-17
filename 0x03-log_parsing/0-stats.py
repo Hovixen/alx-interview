@@ -13,8 +13,11 @@ def line_in(line):
     if len(parts) < 7:
         return None, None
     try:
-        s_code = int(parts[-2])
         f_size = int(parts[-1])
+        try:
+            s_code = int(parts[-2])
+        except ValueError:
+            return None, f_size
         return s_code, f_size
     except (ValueError, IndexError):
         return None, None
@@ -35,10 +38,10 @@ try:
     line_count = 0
     for line in sys.stdin:
         s_code, f_size = line_in(line.rstrip())
-        if s_code is not None and f_size is not None:
+        if f_size is not None:
             total_fs += f_size
-            if s_code in allowed_scode:
-                s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
+        if s_code is not None and s_code in allowed_scode:
+            s_code_count[s_code] = s_code_count.get(s_code, 0) + 1
 
         line_count += 1
 
