@@ -2,14 +2,20 @@
 """ Log parsing """
 import sys
 
+allowed_scode = {200, 301, 400, 401, 403, 404, 405, 500}
+
 
 def line_in(line):
     """ function process each line
     returns status code and the file size
     """
     parts = line.split()
+    if len(parts) < 7:
+        return None, None
     s_code = int(parts[-2])
     f_size = int(parts[-1])
+    if s_code not in allowed_scode:
+        return None, None
     return s_code, f_size
 
 
@@ -25,7 +31,6 @@ try:
     total_fs = 0
     s_code_count = {}
 
-#    try:
     line_count = 0
     for line in sys.stdin:
         s_code, f_size = line_in(line.rstrip())
@@ -40,5 +45,4 @@ try:
             line_count = 0
 except Exception as err:
     pass
-finally:
-    print_stats(total_fs, s_code_count)
+print_stats(total_fs, s_code_count)
