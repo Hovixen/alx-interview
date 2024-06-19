@@ -11,7 +11,7 @@ def makeChange(coins, total):
 
     # Sort the coins in descending order
     coins.sort(reverse=True)
-    
+
     count = 0
     remaining = total
 
