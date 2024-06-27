@@ -17,12 +17,12 @@ def island_perimeter(grid):
                 if m == 0 or grid[m-1][n] == 0:
                     perimeter += 1
                 # check if down is water [0]
-                if m == rows -1 or grid[m+1][n] == 0:
+                if m == rows - 1 or grid[m+1][n] == 0:
                     perimeter += 1
                 # check if left is water [0]
                 if n == 0 or grid[m][n-1] == 0:
                     perimeter += 1
                 # check if right is water [0]
-                if n == columns -1 or grid[m][n+1] == 0:
+                if n == columns - 1 or grid[m][n+1] == 0:
                     perimeter += 1
     return perimeter
