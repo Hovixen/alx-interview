@@ -3,15 +3,20 @@
 A prime game
 """
 
+
 def isWinner(x, nums):
     def sieve_of_eratosthenes(max_n):
-        # Create a boolean array "prime[0:max_n]" and initialize all entries it as true
-        # A value in prime[i] will finally be false if i is Not a prime, else true.
+        """ Create a boolean array "prime[0:max_n]" and initialize all
+        entries it as true
+
+        A value in prime[i] will finally be false if i is
+        Not a prime, else true."""
+
         prime = [True for _ in range(max_n + 1)]
         p = 2
         while (p * p <= max_n):
             # If prime[p] is not changed, then it is a prime
-            if prime[p] == True:
+            if prime[p] is True:
                 # Updating all multiples of p to not prime
                 for i in range(p * p, max_n + 1, p):
                     prime[i] = False
