@@ -5,6 +5,7 @@ A prime game
 
 
 def isWinner(x, nums):
+    """ The prime game function """
     def sieve_of_eratosthenes(max_n):
         """ Create a boolean array "prime[0:max_n]" and initialize all
         entries it as true
