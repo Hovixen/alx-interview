@@ -45,6 +45,10 @@ def isWinner(x, nums):
         # The last turn was made by the losing player, return the winner
         return "Ben" if turn == 0 else "Maria"
 
+
+    if x <= 0 or not nums:
+        return None
+
     # Track wins for both players
     maria_wins = 0
     ben_wins = 0
