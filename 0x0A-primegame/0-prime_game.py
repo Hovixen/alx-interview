@@ -26,6 +26,8 @@ def isWinner(x, nums):
         return [p for p in range(2, max_n + 1) if prime[p]]
 
     def simulate_game(n):
+        if n == 1:
+            return "Ben"
         primes = sieve_of_eratosthenes(n)
         remaining = set(range(1, n + 1))
         turn = 0  # 0 for Maria, 1 for Ben
@@ -52,7 +54,7 @@ def isWinner(x, nums):
         if winner == "Maria":
             maria_wins += 1
         else:
-            ben_wins += 1
+            ben_wins +=1
 
     if maria_wins > ben_wins:
         return "Maria"
